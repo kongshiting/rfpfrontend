@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Container, TextField, Button, Typography, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Select, MenuItem } from "@mui/material";
+import { Box, Container, TextField, Button, Typography, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Select, MenuItem } from "@mui/material";
 import { Add, Delete } from "@mui/icons-material";
 
 const RFPForm = () => {
     const [formData, setFormData] = useState({
       payeeName: "",
       matricNo: "",
+      nusNetID:"",
       category: "Meals & Refreshments",
       eventName: "",
       committee: "",
@@ -114,14 +115,15 @@ const RFPForm = () => {
       
   
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Paper elevation={3} sx={{ padding: 3, marginTop: 5 }}>
           <Typography variant="h5" gutterBottom>Request for Payment (RFP)</Typography>
           <form onSubmit={handleSubmit}>
             <TextField fullWidth label="Payee Name" name="payeeName" value={formData.payeeName} onChange={handleChange} margin="normal" />
             <TextField fullWidth label="Matric No." name="matricNo" value={formData.matricNo} onChange={handleChange} margin="normal" />
+            <TextField fullWidth label="NUS Net ID" name="nusNetID" value={formData.nusNetID} onChange={handleChange} margin="normal" />
             
-            <Typography variant="body1" sx={{ marginTop: 2 }}>Category</Typography>
+            <Typography variant="h6" sx={{ marginTop: 2 }}>Category</Typography>
             <Select fullWidth name="category" value={formData.category} onChange={handleChange}>
               <MenuItem value="Meals & Refreshments">Meals & Refreshments</MenuItem>
               <MenuItem value="Student Prizes & Awards">Student Prizes & Awards</MenuItem>
@@ -201,9 +203,15 @@ const RFPForm = () => {
               <Add /> Add Row
             </Button>
   
-            <Typography variant="body1" sx={{ marginTop: 2 }}>Upload Receipt/Invoice:</Typography>
+            <Typography variant="h6" sx={{ marginTop: 2 }}>Upload Receipt/Invoice</Typography>
             <input type="file" accept="image/*,application/pdf" onChange={handleFileChange} />
-            <Button type="submit" variant="contained" color="primary" sx={{ marginTop: 2 }}>Submit</Button>
+            
+            <Box sx={{ marginTop: 3 }}>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </Box>
+
           </form>
         </Paper>
       </Container>
